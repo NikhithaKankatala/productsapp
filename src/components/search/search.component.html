@@ -1,6 +1,13 @@
-<input
-  #searchBox
-  type="text"
-  placeholder="Search..."
-  (input)="onSearch(searchBox.value)"
-/>
+<mat-form-field appearance="outline" class="search-field">
+  <mat-label>Search</mat-label>
+  <input
+    matInput
+    #searchBox
+    type="text"
+    placeholder="Search..."
+    (input)="onSearch(searchBox.value)"
+  />
+  <button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchBox.value" (click)="searchBox.value=''; onSearch('')">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>

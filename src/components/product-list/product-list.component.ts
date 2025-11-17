@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Product } from '../../services/productmodel';
 import { ProductService } from '../../services/product-service';
 import { SearchComponent } from '../search/search.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,7 +12,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-product-list',
@@ -33,9 +32,10 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, AfterViewInit {
+  
   products: Product[] = [];
-  dataSource!: MatTableDataSource<Product>;
+  dataSource = new MatTableDataSource<Product>();
   displayedColumns: string[] = ['index', 'name', 'category', 'price', 'status', 'actions'];
 
   categories: string[] = ['Headphones', 'Earbuds', 'Mobiles', 'Laptops'];
@@ -53,11 +53,15 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
     this.productService.getProducts().subscribe(res => {
       this.products = res;
-      this.dataSource = new MatTableDataSource(this.products);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      this.dataSource.data = [...this.products];
       this.applyFilters();
     });
+  }
+
+  ngAfterViewInit() {
+    // Paginator & Sort are available only after view init
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   onSearch(text: string) {
@@ -78,21 +82,28 @@ export class ProductListComponent implements OnInit {
   applyFilters() {
     let data = [...this.products];
 
+    // Search filter
     if (this.searchText) {
-      data = data.filter(p => p.name.toLowerCase().includes(this.searchText));
+      data = data.filter(p =>
+        p.name.toLowerCase().includes(this.searchText)
+      );
     }
 
+    // Category filter
     if (this.selectedCategory) {
       data = data.filter(p => p.category === this.selectedCategory);
     }
 
+    // Sort by price
     data = data.sort((a, b) =>
-      this.sortDirection === 'asc' ? a.price - b.price : b.price - a.price
+      this.sortDirection === 'asc'
+        ? a.price - b.price
+        : b.price - a.price
     );
 
     this.dataSource.data = data;
 
-    // Reset paginator to first page after filtering
+    // Reset paginator to first page
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }

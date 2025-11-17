@@ -3,7 +3,7 @@
     {
       "name": "Apple iPhone 15",
       "category": "Mobiles",
-      "price": 79999,
+      "price": 79,
       "status": "Active",
       "description": "Latest generation smartphone with A17 processor",
       "id": "1"
@@ -29,18 +29,16 @@
       "description": "Industry-leading noise-cancelling headphones"
     },
     {
-      "id": "4",
       "name": "Dell XPS 13",
       "category": "Laptops",
       "price": 124999,
       "status": "Active",
-      "stock": 20,
-      "image": "https://picsum.photos/200/200?random=4",
-      "description": "Premium ultrabook with 11th-gen Intel processor"
+      "description": "Premium ultrabook with 11th-gen Intel processor",
+      "id": "4"
     },
     {
-      "name": "Boat Airdopes 441",
-      "category": "Mobiles",
+      "name": "Boat",
+      "category": "Earbuds",
       "price": 249,
       "status": "Active",
       "description": "Affordable true wireless earbuds with deep bass",
