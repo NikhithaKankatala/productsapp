@@ -1,0 +1,72 @@
+{
+  "products": [
+    {
+      "name": "Apple iPhone 15",
+      "category": "Mobiles",
+      "price": 79999,
+      "status": "Active",
+      "description": "Latest generation smartphone with A17 processor",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "name": "Samsung Galaxy S23",
+      "category": "Mobiles",
+      "price": 74999,
+      "status": "Active",
+      "stock": 80,
+      "image": "https://picsum.photos/200/200?random=2",
+      "description": "Flagship Android smartphone with excellent camera"
+    },
+    {
+      "id": "3",
+      "name": "Sony WH-1000XM5",
+      "category": "Headphones",
+      "price": 29999,
+      "status": "Inactive",
+      "stock": 50,
+      "image": "https://picsum.photos/200/200?random=3",
+      "description": "Industry-leading noise-cancelling headphones"
+    },
+    {
+      "id": "4",
+      "name": "Dell XPS 13",
+      "category": "Laptops",
+      "price": 124999,
+      "status": "Active",
+      "stock": 20,
+      "image": "https://picsum.photos/200/200?random=4",
+      "description": "Premium ultrabook with 11th-gen Intel processor"
+    },
+    {
+      "name": "Boat Airdopes 441",
+      "category": "Mobiles",
+      "price": 249,
+      "status": "Active",
+      "description": "Affordable true wireless earbuds with deep bass",
+      "id": "5"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Mobiles"
+    },
+    {
+      "id": "2",
+      "name": "Laptops"
+    },
+    {
+      "id": "3",
+      "name": "Headphones"
+    },
+    {
+      "id": "4",
+      "name": "Earbuds"
+    },
+    {
+      "id": "5",
+      "name": "Accessories"
+    }
+  ]
+}
